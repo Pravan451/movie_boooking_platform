@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🎟️ MovieTime | VEGUS CINEMA</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="main.html">Movies</a>
+      <a href="kids.html">Kids</a>
+      <a href="food.html">Food</a>
+      <a href="sport.html">Sports</a>
+      <a href="booking.html">My Bookings</a>
+      <a href="cont.html">Contact</a>
+      <a href="aboutus.html">About Us</a>
+    </nav>
+  </header>
+
+  <main class="details-container">
+    <div class="movie-detail-card" id="movieDetails">
+      <!-- JS will insert content here -->
+    </div>
+    <button class="book-btn" onclick="goToSeatBooking()">Select Seats</button>
+  </main>
+
+  <script>
+    const movieId = localStorage.getItem("selectedMovieId");
+    const movieData = {
+    1: { 
+        title: "JAWAN", 
+        description: "An epic story of adventure and drama.", 
+        poster: "images/jawan.jpeg", 
+        time: "7:00 PM" 
+    },
+    2: { 
+        title: "ETERNALS", 
+        description: "A thrilling action-packed ride.", 
+        poster: "images/ete.avif", 
+        time: "8:30 PM" 
+    },
+    3: 
+    { 
+        title: "SPIDER MAN FAR FROM HOME", 
+        description: "A heartwarming tale of love and friendship.", 
+        poster: "images/spi.webp", 
+        time: "6:00 PM" 
+    },
+    4: { 
+        title: "COLLEGE ROMANCE", 
+        description: "A gritty tale of power and vengeance.", poster: "images/col.jpg", time: "5:00 PM" },
+    5: { title: "GADAR 2", description: "An explosive tale of rebellion.", poster: "images/gadar.jpeg", time: "4:30 PM" },
+    6: { title: "INTERSTELER", description: "The epic finale of the Marvel saga.", poster: "images/int.jpeg", time: "9:00 PM" },
+    7: { title: "WAKANDA FOREVER", description: "Dark, brooding, and intense.", poster: "images/wak.jpg", time: "7:45 PM" },
+    8: { title: "DESPICABLE ME 4", description: "A high-octane aerial adventure.", poster: "kids/des.webp", time: "6:30 PM" },
+    9: { title: "SALAAR", description: "Mystical madness in the multiverse.", poster: "images/sal.avif", time: "8:00 PM" },
+    10: { title: "AQUAMAN THE LOST KINGDOM", description: "The rise of a red sandalwood smuggler.", poster: "images/aqa.webp", time: "5:15 PM" },
+    11: { title: "GAME CHANGER", description: "Thunderous fun and action.", poster: "images/gam.webp", time: "9:30 PM" },
+    12: { title: "MUFASA", description: "A hilarious rom-com entertainer.", poster: "images/muf.webp", time: "4:00 PM" },
+    13: { title: "KONG VS GODZILLA THE NEW EMPIRE", description: "Mythology meets magic in this fantasy epic.", poster: "images/goz.webp", time: "6:15 PM" },
+    14: { title: "BULLET TRAIN", description: "A charming animated tale of friendship.", poster: "images/bul.jpeg", time: "3:00 PM" },
+    15: { title: "KINGDOM OF THE PLANET OF THE APES", description: "A powerful historical biopic.", poster: "images/ape.webp", time: "7:30 PM" },
+    16: 
+    { 
+        title: "MI VS DC", 
+        description: "Enjoy the live Match ", 
+        poster: "sport/delm.jpeg", 
+        time: "6:00 PM" 
+    },
+    17: 
+    { 
+        title: "DC VS PBKS", 
+        description: "Enjoy the live Match", 
+        poster: "sport/dpd.jpeg", 
+        time: "6:00 PM" 
+    },
+    18: 
+    { 
+        title: "SRH VS KKR VS PBKS",
+        description: "Enjoy the live Match",  
+        poster: "sport/srh.jpg", 
+        time: "6:00 PM" 
+    },
+    19: 
+    { 
+        title: "DC VS PBKS", 
+        description: "Enjoy the live Match", 
+        poster: "sport/dpd.jpeg", 
+        time: "6:00 PM" 
+    },
+    20: 
+    { 
+        title: "LSG VS CSK",
+         description: "Enjoy the live Match", 
+        poster: "sport/csk.jpg", 
+        time: "6:00 PM" 
+    },
+    21: 
+    { 
+        title: "CSK VS SRH", 
+        description: "Enjoy the live Match ", 
+        poster: "sport/src.jpg", 
+        time: "6:00 PM" 
+    },
+    22: 
+    { 
+        title: "DC VS PBKS", 
+        description: "Enjoy the live Match ", 
+        poster: "sport/dpd.jpeg", 
+        time: "6:00 PM" 
+    },
+    23: 
+    { 
+        title: "MI VS DC", 
+        description: "Enjoy the live Match ", 
+        poster: "sport/delm.jpeg", 
+        time: "6:00 PM" 
+    },
+    24: 
+    { 
+        title: "DC VS PBKS", 
+        description: "Enjoy the live Match ", 
+        poster: "sport/dpd.jpeg", 
+        time: "6:00 PM" 
+    },
+    25: 
+    { 
+        title: "SRH VS KKR", 
+        description: "Enjoy the live Match ", 
+        poster: "sport/srh.jpg", 
+        time: "6:00 PM" 
+    },
+
+    26: { title: "BRAVE", description: "A high-octane aerial adventure.", poster: "kids/bre.jpeg", time: "6:30 PM" },
+    27: { title: "FROZEN", description: "A high-octane aerial adventure.", poster: "kids/fro.png", time: "6:30 PM" },
+    28: { title: "LOREX", description: "A high-octane aerial adventure.", poster: "kids/lo.jpg", time: "6:30 PM" },
+    29: { title: "FINDING NEMO", description: "A high-octane aerial adventure.", poster: "kids/nemo.jpg", time: "6:30 PM" },
+    30: { title: "SPY KIDS", description: "A high-octane aerial adventure.", poster: "kids/spy.jpeg", time: "6:30 PM" },
+    31: { title: "TURBO", description: "A high-octane aerial adventure.", poster: "kids/tur.jpeg", time: "6:30 PM" },
+    32: { title: "UP", description: "A high-octane aerial adventure.", poster: "kids/up.jpeg", time: "6:30 PM" },
+    33: { title: "KUNG FU PANDA", description: "A high-octane aerial adventure.", poster: "kids/kung.webp", time: "6:30 PM" },
+    34: { title: "MAGIC KIDS", description: "A high-octane aerial adventure.", poster: "kids/mag.jpeg", time: "6:30 PM" },
+    35: { title: "WRECK IT RALPH", description: "A high-octane aerial adventure.", poster: "kids/WRE.jpg", time: "6:30 PM" },
+  };
+
+  const movie = movieData[movieId];
+  document.getElementById("movieDetails").innerHTML = `
+    <img src="${movie.poster}" alt="${movie.title}" class="poster" />
+    <h2>${movie.title}</h2>
+    <p>${movie.description}</p>
+    <p><strong>Showtime:</strong> ${movie.time}</p>
+  `;
+
+  function goToSeatBooking() {
+  localStorage.setItem("showtime", movie.time);
+  localStorage.setItem("movieTitle", movie.title);
+
+  // Match ID range for sports
+  if (movieId >= 16 && movieId <= 25) {
+    window.location.href = "movie.html";
+  } else {
+    window.location.href = "seats.html";
+  }
+}
+  </script>
+</body>
+</html>

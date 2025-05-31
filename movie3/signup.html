@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - MovieTime</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🎟️ MovieTime</div>
+  </header>
+
+  <main class="signup-container">
+    <h1>Sign Up for MovieTime</h1>
+    <form id="signupForm">
+      <div class="input-group">
+        <label class="kk"  for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required />
+      </div>
+      <div class="input-group">
+        <label class="kk" for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter email" required />
+      </div>
+      <div class="input-group">
+        <label class="kk"  for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p class="kk" >Already have an account? <a class="kk"  href="index.html">Login</a></p>
+  </main>
+
+  <script>
+    // Simple sign-up form validation
+    document.getElementById("signupForm").onsubmit = function (event) {
+      event.preventDefault(); // Prevent form from submitting
+
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Basic validation
+      if (username === "" || email === "" || password === "") {
+        alert("Please fill in all fields!");
+      } else {
+        alert("Sign Up Successful!");
+        // You can store the user details in localStorage or sessionStorage for now
+        localStorage.setItem("user", JSON.stringify({ username, email, password }));
+        window.location.href = "index.html"; // Redirect to login after successful sign-up
+      }
+    };
+  </script>
+</body>
+</html>

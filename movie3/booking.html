@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bookings | VEGUS CINEMA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🍿 MovieTime | VEGUS CINEMA</h1>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="main.html">Movies</a>
+      <a href="kids.html">Kids</a>
+      <a href="food.html">Food</a>
+      <a href="sport.html">Sports</a>
+      <a href="booking.html">My Bookings</a>
+      <a href="cont.html">Contact</a>
+      <a href="aboutus.html">About Us</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="hh">🎟️ My Bookings</h2>
+    <div class="bookings-container" id="booking-list">
+      <!-- Booking data will appear here -->
+    </div>
+  </main>
+
+  <!-- Link only the external JS -->
+  <script src="script.js">
+  const container = document.getElementById("bookingList");
+  const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+  if (bookings.length === 0) {
+    container.innerHTML = "<p>No bookings yet!</p>";
+  } else {
+    bookings.forEach(b => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${b.image}" alt="${b.title}">
+        <div class="card-content">
+          <h4>${b.title}</h4>
+          <p>${b.venue}</p>
+          <p>${b.date}</p>
+          <p>${b.price}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+</script>
+</body>
+</html>

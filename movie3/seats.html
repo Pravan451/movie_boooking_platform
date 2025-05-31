@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Seats</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🎟️ MovieTime | VEGUS CINEMA</div>
+    <nav>
+      <a href="home.html">Home</a>
+      <a href="main.html">Movies</a>
+      <a href="kids.html">Kids</a>
+      <a href="food.html">Food</a>
+      <a href="sport.html">Sports</a>
+      <a href="booking.html">My Bookings</a>
+      <a href="cont">Contact</a>
+      <a href="aboutus.html">About Us</a>
+    </nav>
+  </header>
+
+  <main class="seat-selection">
+    <h2 id="movieTitle" class="hh"">Select Your Seats</h2>
+    <p><strong>Showtime:</strong> <span id="showtime"></span></p>
+
+    <div class="screen">Screen</div>
+
+    <div class="seats-grid">
+      <!-- 6 rows × 8 seats = 48 seats -->
+      <script>
+        for (let i = 0; i < 48; i++) {
+          document.write(`<div class="seat" onclick="toggleSeat(this)"></div>`);
+        }
+      </script>
+    </div>
+
+    <button class="book-btn" onclick="confirmBooking()">Confirm Booking</button>
+  </main>
+
+  <script>
+    document.getElementById("movieTitle").innerText = localStorage.getItem("movieTitle");
+    document.getElementById("showtime").innerText = localStorage.getItem("showtime");
+
+    function toggleSeat(seat) {
+      seat.classList.toggle("selected");
+    }
+
+    function confirmBooking() {
+      const selectedSeats = document.querySelectorAll(".seat.selected");
+      if (selectedSeats.length === 0) {
+        alert("Please select at least one seat.");
+        return;
+      }
+
+      alert(`🎉 Booking Confirmed for ${selectedSeats.length} seat(s)! Enjoy the show 🍿`);
+      window.location.href = "home.html"; // back to home after booking
+    }
+  </script>
+</body>
+</html>

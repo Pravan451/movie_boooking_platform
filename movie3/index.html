@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - MovieTime</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🎟️ MovieTime</div>
+  </header>
+
+  <main class="login-container">
+    <h1>Login to MovieTime</h1>
+    <form id="loginForm" onsubmit="validateLogin(event)">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required />
+      </div>
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
